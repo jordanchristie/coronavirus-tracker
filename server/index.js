@@ -8,9 +8,10 @@ const moment = require("moment");
 const getDate = () => {
   const date = new Date();
 
-  const formattedDate = moment(date).format("M/D/YY");
+  const formattedDate = moment(date)
+    .subtract(1, "days")
+    .format("M/D/YY");
 
-  console.log(formattedDate);
   return `${formattedDate}`;
 };
 
