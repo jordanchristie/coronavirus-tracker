@@ -44,7 +44,6 @@ getData();
 
 app.get("/data", async (req, res) => {
   const data = await getData();
-  console.log(data);
   res.send(data);
 });
 

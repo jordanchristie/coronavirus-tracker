@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <h1>Map goes here</h1>
-      <Data />
+      {data.length ? <Data data={data} /> : <h1>Loading...</h1>}
     </div>
   );
 }
