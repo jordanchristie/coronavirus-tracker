@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Map from "./components/Map/Map";
 import Data from "./components/Data/Data";
 import "./App.css";
 
@@ -20,8 +21,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Map goes here</h1>
-      {data.length ? <Data data={data} /> : <h1>Loading...</h1>}
+      {data.length ? (
+        <main>
+          <Map data={data} />
+          <Data data={data} />
+        </main>
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </div>
   );
 }
