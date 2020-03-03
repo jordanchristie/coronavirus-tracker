@@ -1,12 +1,25 @@
-import React from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import React, { useContext } from "react";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Graticule
+} from "react-simple-maps";
 import Markers from "./Markers/Markers";
+import { DataContext } from "../../context/DataContext";
 
-const Map = ({ data }) => {
+const Map = () => {
+  const { data } = useContext(DataContext);
   const geoUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
   return (
-    <ComposableMap>
+    <ComposableMap
+      style={{ transform: "translateY(-200px) scale(0.7)" }}
+      projectionConfig={{
+        scale: 190
+      }}
+    >
+      <Graticule stroke="#F53" />
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map(geo => (
