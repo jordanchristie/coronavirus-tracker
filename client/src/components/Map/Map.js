@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import styled, { keyframes } from "styled-components";
 import {
   ComposableMap,
   Geographies,
@@ -13,13 +14,12 @@ const Map = () => {
   const geoUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
   return (
-    <ComposableMap
-      style={{ transform: "translateY(-200px) scale(0.7)" }}
+    <WorldMap
       projectionConfig={{
         scale: 190
       }}
     >
-      <Graticule stroke="#F53" />
+      <MapGraticule stroke="#F53" />
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map(geo => (
@@ -28,8 +28,25 @@ const Map = () => {
         }
       </Geographies>
       {data && <Markers data={data} />}
-    </ComposableMap>
+    </WorldMap>
   );
 };
 
 export default Map;
+
+const fade = keyframes`
+  from {
+    opacity: 0
+  }
+  to: {
+    opacity: 1
+  }
+`;
+
+const WorldMap = styled(ComposableMap)`
+  animation: ${fade} 5s ease-in-out;
+`;
+
+const MapGraticule = styled(Graticule)`
+  animation: ${fade} 2s ease-in-out;
+`;
